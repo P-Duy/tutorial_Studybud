@@ -5,8 +5,8 @@
 <div>
     <form method="POST" action="">
         {% csrf_token %}
-
-        <input type="Submit" value ="Submit" />
+        {{form.as_p}}
+        <input type="Submit" value ="Submit"/>
     </form>
 </div>
 
