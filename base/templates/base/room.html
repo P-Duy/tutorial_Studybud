@@ -22,7 +22,7 @@
                 {% if request.user == message.user %}
                     <a href="{% url 'delete-message' message.id %}">Delete</a>
                 {% endif %}
-                <small> @{{message.user}} . {{message.created | timesince}}</small>
+                <small> @<a href="{% url 'user-profile' room.host.id %}">{{message.user}} </a>. {{message.created | timesince}}</small>
                 <p>{{message.body}}</p>
                 <hr>
             </div>
