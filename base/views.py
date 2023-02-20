@@ -61,7 +61,7 @@ def registerUser(request):
 
 def logoutUser(request):
     logout(request)
-    return redirect('login')
+    return redirect('home')
 
 
 def home(request):
