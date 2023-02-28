@@ -66,7 +66,7 @@ def logoutUser(request):
 
 def home(request):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
-    topic = Topic.objects.all()
+    topic = Topic.objects.all()[0:5]
     rooms = Room.objects.filter(
         Q(topic__name__icontains=q) |
         Q(name__icontains=q) |
@@ -191,3 +191,15 @@ def updateUser(request):
     
     context={'form': form}
     return render(request, 'base/update_user.html',context)
+
+def topicsPage(request):
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+    
+    topic = Topic.objects.filter(name__icontains=q)
+    context = {'topic':topic}
+    return render(request, 'base/topics.html',context)
+
+def activityPage(request):
+    room_message = Message.objects.all()[0:4]
+    context = {'room_messages': room_message}
+    return render(request,'base/activity.html',{'room_messages': room_message})
