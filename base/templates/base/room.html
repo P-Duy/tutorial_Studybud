@@ -72,7 +72,7 @@
             </svg>
           </button> -->
           </div>
-          <div class="room__box scroll">
+          <div class="room__box scroll" >
             <div class="room__header scroll">
               <div class="room__info">
                 <h3>{{room.name}}</h3>
@@ -82,17 +82,15 @@
                 <p>Hosted By</p>
                 <a href="{% url 'user-profile' room.host.id %}" class="room__author">
                   <div class="avatar avatar--small">
-                    <img src="https://randomuser.me/api/portraits/men/37.jpg" />
+                    <img src="{{room.host.avatar.url}}" />
                   </div>
                   <span>@{{room.host.username}}</span>
                 </a>
               </div>
-              {% comment %} <div class="room__details">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi, tenetur laudantium? Dicta repellendus
-                rerum consectetur, voluptatem repudiandae eum ea porro cupiditate provident nulla, deserunt, ab ipsum
-                corporis laboriosam deleniti molestias?
-              </div> {% endcomment %}
-              <span class="room__topics">{{room.topic}}</span>
+               <div class="room__details">
+                {{room.description}}
+              </div> 
+              <span  class="room__topics">{{room.topic}}</span>
             </div>
             <div class="room__conversation">
               <div class="threads scroll">
@@ -102,7 +100,7 @@
                       <div class="thread__author">
                         <a href="{% url 'user-profile' message.user.id %}" class="thread__authorInfo">
                           <div class="avatar avatar--small">
-                            <img src="https://randomuser.me/api/portraits/men/37.jpg" />
+                            <img src="{{message.user.avatar.url}}" />
                           </div>
                           <span>@{{message.user.username}}</span>
                         </a>
@@ -145,7 +143,7 @@
             {% for user in participants %}
             <a href="{% url 'user-profile' user.id %}" class="participant">
               <div class="avatar avatar--medium">
-                <img src="https://randomuser.me/api/portraits/men/37.jpg" />
+                <img src="{{user.avatar.url}}" />
               </div>
               <p>
                 {{user.username}}
